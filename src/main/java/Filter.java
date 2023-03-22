@@ -12,12 +12,14 @@ class Filter {
         this.f = f;
     }
     public List<Integer> filterOut(List<Integer> list) {
+        Logger logger = Logger.getInstance();
         List<Integer> filteredList = new ArrayList<>();
         for (int num : list) {
             if (num >= f) {
                 filteredList.add(num);
+                logger.log("Элемент \"" + num + "\" проходит");
             } else {
-                Logger.getInstance().log("Filtered out number: " + num);
+                logger.log("Элемент \"" + num + "\" не проходит");
             }
         }
         return filteredList;

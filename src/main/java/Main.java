@@ -5,35 +5,37 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Logger logger = Logger.getInstance();
+        logger.log("Запускаем программу");
         Scanner scanner = new Scanner(System.in);
-
-        Logger.getInstance().log("Program started");
-
-        System.out.println("Hello! Please enter the size of the list:");
-        int N = scanner.nextInt();
-        Logger.getInstance().log("Size of list entered: " + N);
-
-        System.out.println("Please enter the upper bound of the elements:");
-        int M = scanner.nextInt();
-        Logger.getInstance().log("Upper bound of elements entered: " + M);
-
+        logger.log("Просим пользователя ввести входные данные для списка ");
+        System.out.println("Введите размер списка:");
+        int n = scanner.nextInt();
+        logger.log("Установлен размер списка: " + n);
+        System.out.println("Введите верхнюю границу для значений:");
+        int m = scanner.nextInt();
+        logger.log("Установлена верхняя граница для значения: " + m);
+        logger.log("Создаём и наполняем список");
         Random random = new Random();
         List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < N; i++) {
-            int num = random.nextInt(M+1);
+        System.out.print("Вот случайный список:");
+        for (int i = 0; i < n; i++) {
+            int num = random.nextInt(m +1);
             list.add(num);
-            Logger.getInstance().log("Added number to list: " + num);
+            System.out.print(num+" ");
         }
+        System.out.println();
+        logger.log("Просим пользователя ввести входные данные для фильтрации");
 
-        System.out.println("Please enter the filter value:");
+        System.out.println("Введите порог для фильтра:");
         int f = scanner.nextInt();
-        Logger.getInstance().log("Filter value entered: " + f);
-
+        logger.log("Установлен порог для фильтра: " + f);
         Filter filter = new Filter(f);
+        logger.log("Запускаем фильтрацию");
         List<Integer> filteredList = filter.filterOut(list);
 
-        System.out.println("Filtered list: " + filteredList.toString());
+        System.out.println("Отфильтрованный список: " + filteredList.toString());
 
-        Logger.getInstance().log("Program finished");
+        logger.log("Завершаем программу");
     }
 }
